@@ -1,0 +1,60 @@
+{
+  "name": "grapesjs-simple-lp",
+  "version": "0.0.2",
+  "description": "GrapesJS Plugin Landing Page Builder",
+  "main": "dist/grapesjs-simple-lp.min.js",
+  "scripts": {
+    "lint": "eslint src",
+    "v:patch": "npm version --no-git-tag-version patch",
+    "build": "npm run v:patch && webpack --env.production && npm run build:css",
+    "start": "webpack-dev-server --open --progress --colors & npm run build:css -- -w",
+    "build:css": "node-sass src/style/main.scss dist/grapesjs-simple-lp.min.css --output-style compressed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/omarmd1986/grapesjs-simple-lp.git"
+  },
+  "keywords": [
+    "grapesjs",
+    "plugin",
+    "landing page"
+  ],
+  "author": "Omar Martinez",
+  "license": "BSD-3-Clause",
+  "babel": {
+    "presets": [
+      "env"
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
+  },
+  "peerDependencies": {
+    "grapesjs": "0.x"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.19.1",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.8.3",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.2"
+  },
+  "dependencies": {
+    "grapesjs-blocks-basic": "^0.1.7",
+    "grapesjs-component-countdown": "^0.1.2",
+    "grapesjs-navbar": "^0.1.5",
+    "grapesjs-plugin-export": "^1.0.0",
+    "grapesjs-plugin-forms": "^1.0.0",
+    "grapesjs-lory-slider": "^0.1.5",
+    "grapesjs-plugin-header": "^0.1.52",
+    "grapesjs-plugin-social": "^0.0.8",
+    "grapesjs-plugin-actions": "^0.0.7",
+    "grapesjs-blocks-avance": "^0.0.23",
+    "grapesjs-plugin-sproutvideo": "^0.0.9",
+    "grapesjs-plugin-modal": "^0.1.19"
+  }
+}
