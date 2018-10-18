@@ -48,7 +48,28 @@ export default (editor, config) => {
                         {name: 'Attachment', property: 'background-attachment'},
                         {name: 'Size', property: 'background-size'}
                     ]
-                } ]
-        },
+                }]
+        }, {
+            name: 'Dimension',
+            open: true,
+            buildProps: ['width', 'height', 'margin', 'padding'],
+            properties: [{
+                    property: 'margin',
+                    properties: [
+                        {name: 'Top', property: 'margin-top'},
+                        {name: 'Right', property: 'margin-right'},
+                        {name: 'Bottom', property: 'margin-bottom'},
+                        {name: 'Left', property: 'margin-left'}
+                    ]
+                }, {
+                    property: 'padding',
+                    properties: [
+                        {name: 'Top', property: 'padding-top'},
+                        {name: 'Right', property: 'padding-right'},
+                        {name: 'Bottom', property: 'padding-bottom'},
+                        {name: 'Left', property: 'padding-left'}
+                    ]
+                }]
+        }
     ]);
 }

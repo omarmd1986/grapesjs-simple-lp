@@ -18,6 +18,7 @@ import components from './components';
 import panels from './panels';
 import styles from './styles';
 import events from './events';
+import modifiers from './modifiers';
 
 export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) => {
     let config = opts;
@@ -69,7 +70,10 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
 
         // `grapesjs-blocks-basic` plugin options
         // By setting this option to `false` will avoid loading the plugin
-        blocksBasicOpts: {},
+        blocksBasicOpts: {
+            flexGrid: 1,
+            stylePrefix: `mrk-row-` // To avoid CSS conflicts whit bootstrap
+        },
 
         // `grapesjs-component-countdown` plugin options
         // By setting this option to `false` will avoid loading the plugin
@@ -85,11 +89,17 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
 
         // `grapesjs-plugin-forms` plugin options
         // By setting this option to `false` will avoid loading the plugin
-        formsOpts: {},
+        formsOpts: {
+            blocks: ['form']
+        },
 
         // `grapesjs-lory-slider` plugin options
         // By setting this option to `false` will avoid loading the plugin
-        sliderOpts: {},
+        sliderOpts: {
+            sliderBlock: {
+                category: 'Extra'
+            }
+        },
 
         // `grapesjs-plugin-header` plugin options
         // By setting this option to `false` will avoid loading the plugin
@@ -152,6 +162,9 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
     avanceOpts && pluginAvance(editor, avanceOpts);
     sproutOpts && pluginSproutvideo(editor, sproutOpts);
     modalOpts && pluginModal(editor, modalOpts);
+
+    // Change some components
+    modifiers(editor);
 
     // Load components
     components(editor, config);
