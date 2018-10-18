@@ -18,7 +18,7 @@ import components from './components';
 import panels from './panels';
 import styles from './styles';
 
-export default grapesjs.plugins.add('gjs-simple-lp', (editor, opts = {}) => {
+export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) => {
   let config = opts;
 
   let defaults = {
