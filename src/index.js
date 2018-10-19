@@ -107,7 +107,9 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
 
         // `grapesjs-plugin-social` plugin options
         // By setting this option to `false` will avoid loading the plugin
-        socialOpts: {},
+        socialOpts: {
+            blocks: ['link', 'link-block'],
+        },
 
         // `grapesjs-plugin-actions` plugin options
         // By setting this option to `false` will avoid loading the plugin
@@ -115,7 +117,9 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
 
         // `grapesjs-blocks-avance` plugin options
         // By setting this option to `false` will avoid loading the plugin
-        avanceOpts: {},
+        avanceOpts: {
+            blocks: ['grid-items', 'list-items', 'header', 'section', 'footer', 'iframe', 'button'],
+        },
 
         // `grapesjs-plugin-sproutvideo` plugin options
         // By setting this option to `false` will avoid loading the plugin
@@ -157,9 +161,9 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
 
     sliderOpts && pluginSlider(editor, sliderOpts);
     headerOpts && pluginHeader(editor, headerOpts);
-    socialOpts && pluginSocial(editor, socialOpts);
     actionsOpts && pluginActions(editor, actionsOpts);
     avanceOpts && pluginAvance(editor, avanceOpts);
+    socialOpts && pluginSocial(editor, socialOpts);
     sproutOpts && pluginSproutvideo(editor, sproutOpts);
     modalOpts && pluginModal(editor, modalOpts);
 

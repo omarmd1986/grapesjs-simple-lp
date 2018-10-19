@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-simple-lp",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "GrapesJS Plugin Landing Page Builder",
   "main": "dist/grapesjs-simple-lp.min.js",
   "scripts": {
@@ -44,17 +44,17 @@
     "webpack-dev-server": "^2.11.2"
   },
   "dependencies": {
+    "grapesjs-blocks-avance": "^0.0.23",
     "grapesjs-blocks-basic": "^0.1.7",
     "grapesjs-component-countdown": "^0.1.2",
+    "grapesjs-lory-slider": "^0.1.5",
     "grapesjs-navbar": "^0.1.5",
+    "grapesjs-plugin-actions": "^0.0.7",
     "grapesjs-plugin-export": "^1.0.0",
     "grapesjs-plugin-forms": "^1.0.0",
-    "grapesjs-lory-slider": "^0.1.5",
     "grapesjs-plugin-header": "^0.1.52",
+    "grapesjs-plugin-modal": "^0.1.19",
     "grapesjs-plugin-social": "^0.0.8",
-    "grapesjs-plugin-actions": "^0.0.7",
-    "grapesjs-blocks-avance": "^0.0.23",
-    "grapesjs-plugin-sproutvideo": "^0.0.9",
-    "grapesjs-plugin-modal": "^0.1.19"
+    "grapesjs-plugin-sproutvideo": "^0.0.9"
   }
 }
