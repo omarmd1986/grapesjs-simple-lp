@@ -24,5 +24,6 @@ export default (editor) => {
     editor.on('load', settingsManager);
     editor.on('load', () => $('div.gjs-clm-tags').css('display', 'none'));
     editor.on('load', () => pn.removeButton('views','open-tm'));
-
+    // close all the blocks
+    editor.on('load', () => editor.BlockManager.getCategories().each(ctg => ctg.set('open', false)));
 }

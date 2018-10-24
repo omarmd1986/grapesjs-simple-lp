@@ -1,5 +1,13 @@
 @import "variables.scss";
 
+.#{$prefix}pn-panel.#{$prefix}pn-views{
+    .#{$prefix}pn-buttons {
+        span {
+            width: 50%;
+        }  
+    }   
+} 
+
 .#{$prefix} {
     @each $cnum, $ccol in (one, $primaryColor), (two, $secondaryColor), (three, $tertiaryColor), (four, $quaternaryColor) {
         &#{$cnum} {
