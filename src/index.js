@@ -11,6 +11,7 @@ import pluginActions from 'grapesjs-plugin-actions';
 import pluginAvance from 'grapesjs-blocks-avance';
 import pluginSproutvideo from 'grapesjs-plugin-sproutvideo';
 import pluginModal from 'grapesjs-plugin-modal';
+import customBlocks from 'grapesjs-custom-blocks';
 
 import commands from './commands';
 import blocks from './blocks';
@@ -128,6 +129,10 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
         // `grapesjs-plugin-modal` plugin options
         // By setting this option to `false` will avoid loading the plugin
         modalOpts: {},
+
+        // `grapesjs-plugin-modal` plugin options
+        // By setting this option to `false` will avoid loading the plugin
+        customBlocksOpts: {},
     };
 
     // Load defaults
@@ -149,7 +154,8 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
         actionsOpts,
         avanceOpts,
         sproutOpts,
-        modalOpts
+        modalOpts,
+        customBlocksOpts,
     } = config;
 
     // Load plugins
@@ -166,6 +172,7 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
     socialOpts && pluginSocial(editor, socialOpts);
     sproutOpts && pluginSproutvideo(editor, sproutOpts);
     modalOpts && pluginModal(editor, modalOpts);
+    customBlocksOpts && customBlocks(editor, customBlocksOpts);
 
     // Change some components
     modifiers(editor);
