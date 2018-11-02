@@ -1,4 +1,4 @@
-export default (editor) => {
+export default (editor, opts) => {
     (function () {
         var blockManager = editor.BlockManager;
         var form = blockManager.get('form');
@@ -37,6 +37,75 @@ export default (editor) => {
                 <button type="submit" class="btn btn-primary">Send</button>
             </form>
         `;
+    })();
+    
+    (function () {
+        let linkBehavior = opts.linkBehavior
+        
+        let options = null;
+
+        if ( typeof linkBehavior.options === 'function' ){
+            options = linkBehavior.options();
+        }
+        
+        if ( typeof linkBehavior.options === 'object' ){
+            options = linkBehavior.options;
+        }
+        
+        if ('object' !== typeof options) {
+            console.warn('Invalid options for link components');
+            return;
+        }
+        
+        const domc = editor.DomComponents;
+
+        const linkType = domc.getType('link');
+        const linkModel = linkType.model;
+        const linkView = linkType.view;
+
+        let traits = linkModel.prototype.defaults.traits.slice(0);
+        
+        traits.push({
+            type: 'select',
+            label: linkBehavior.traitLabel,
+            name: linkBehavior.name,
+            changeProp: 1,
+            options: options
+        });
+        
+        let model = linkModel.extend({
+            init: function () {
+
+            },
+
+            // Extend default properties
+            defaults: Object.assign({}, linkModel.prototype.defaults, {
+                // Traits (Settings)
+                traits: traits
+            })
+        });
+
+        let view = linkView.extend({
+
+            init: function () {
+                let model = this.model;
+
+                this.listenTo(model, `change:${linkBehavior.name}`, () => {
+                    model.setAttributes({
+                        href: model.get(linkBehavior.name)
+                    });
+                });
+            }
+        });
+        
+        domc.addType('link', {
+            // Define the Model
+            model: model,
+
+            // Define the View
+            view: view
+        });
+        
     })();
     
     (function () {

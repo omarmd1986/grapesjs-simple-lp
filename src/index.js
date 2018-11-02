@@ -68,6 +68,15 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
 
         // Use custom set of sectors for the Style Manager
         customStyleManager: [],
+        
+        // Use to modify the link tratis
+        linkBehavior: {
+            traitLabel: '',
+            name: '',
+            options: function() {
+
+            }
+        },
 
         // `grapesjs-blocks-basic` plugin options
         // By setting this option to `false` will avoid loading the plugin
@@ -165,6 +174,9 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
     exportOpts && pluginExport(editor, exportOpts);
     formsOpts && pluginForms(editor, formsOpts);
 
+    // Change some components
+    modifiers(editor, config);
+    
     sliderOpts && pluginSlider(editor, sliderOpts);
     headerOpts && pluginHeader(editor, headerOpts);
     actionsOpts && pluginActions(editor, actionsOpts);
@@ -173,9 +185,6 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
     sproutOpts && pluginSproutvideo(editor, sproutOpts);
     modalOpts && pluginModal(editor, modalOpts);
     customBlocksOpts && customBlocks(editor, customBlocksOpts);
-
-    // Change some components
-    modifiers(editor);
 
     // Load components
     components(editor, config);
