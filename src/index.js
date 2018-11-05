@@ -71,11 +71,10 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
         
         // Use to modify the link tratis
         linkBehavior: {
-            traitLabel: '',
-            name: '',
-            options: function() {
-
-            }
+            traitLabel: 'Add on',
+            name: 'addon',
+            wildcard: '',
+            options: []
         },
 
         // `grapesjs-blocks-basic` plugin options

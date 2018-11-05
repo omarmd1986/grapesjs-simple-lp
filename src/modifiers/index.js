@@ -52,7 +52,7 @@ export default (editor, opts) => {
             options = linkBehavior.options;
         }
         
-        if ('object' !== typeof options) {
+        if ('object' !== typeof options || options.length < 1) {
             console.warn('Invalid options for link components');
             return;
         }
@@ -92,7 +92,7 @@ export default (editor, opts) => {
 
                 this.listenTo(model, `change:${linkBehavior.name}`, () => {
                     model.setAttributes({
-                        href: model.get(linkBehavior.name)
+                        href: `${linkBehavior.wildcard}${model.get(linkBehavior.name)}`
                     });
                 });
             }
