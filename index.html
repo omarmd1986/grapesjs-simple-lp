@@ -85,13 +85,20 @@
                 height: '100%',
                 showOffsets: 1,
                 noticeOnUnload: 0,
-                storageManager: {autoload: 0},
+//                storageManager: {autoload: 0},
                 container: '#gjs',
                 fromElement: true,
 
                 plugins: ['grapesjs-simple-lp'],
                 pluginsOpts: {
-                    'grapesjs-simple-lp': {}
+                    'grapesjs-simple-lp': {
+                        linkBehavior: {
+                            traitLabel: 'Add on',
+                            name: 'addon',
+                            wildcard: '##',
+                            options: [{value:'value',name:'name'},{value:'value1',name:'name1'}]
+                        }
+                    }
                             }
             });
         </script>

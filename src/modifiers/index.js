@@ -89,11 +89,11 @@ export default (editor, opts) => {
 
             init: function () {
                 let model = this.model;
-
+                
                 this.listenTo(model, `change:${linkBehavior.name}`, () => {
-                    model.setAttributes({
-                        href: `${linkBehavior.wildcard}${model.get(linkBehavior.name)}`
-                    });
+                    let attr = model.getAttributes();
+                    attr.href = `${linkBehavior.wildcard}${model.get(linkBehavior.name)}`;
+                    model.setAttributes(attr);
                 });
             }
         });
