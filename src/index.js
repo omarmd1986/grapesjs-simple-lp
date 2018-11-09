@@ -4,7 +4,6 @@ import pluginCountdown from 'grapesjs-component-countdown';
 import pluginNavbar from 'grapesjs-navbar';
 import pluginExport from 'grapesjs-plugin-export';
 import pluginForms from 'grapesjs-plugin-forms';
-import pluginSlider from 'grapesjs-lory-slider';
 import pluginHeader from 'grapesjs-plugin-header';
 import pluginSocial from 'grapesjs-plugin-social';
 import pluginActions from 'grapesjs-plugin-actions';
@@ -12,6 +11,7 @@ import pluginAvance from 'grapesjs-blocks-avance';
 import pluginSproutvideo from 'grapesjs-plugin-sproutvideo';
 import pluginModal from 'grapesjs-plugin-modal';
 import customBlocks from 'grapesjs-custom-blocks';
+import carousel from 'grapesjs-plugin-carousel';
 
 import commands from './commands';
 import blocks from './blocks';
@@ -68,7 +68,7 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
 
         // Use custom set of sectors for the Style Manager
         customStyleManager: [],
-        
+
         // Use to modify the link tratis
         linkBehavior: {
             traitLabel: 'Add on',
@@ -102,14 +102,6 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
             blocks: ['form']
         },
 
-        // `grapesjs-lory-slider` plugin options
-        // By setting this option to `false` will avoid loading the plugin
-        sliderOpts: {
-            sliderBlock: {
-                category: 'Extra'
-            }
-        },
-
         // `grapesjs-plugin-header` plugin options
         // By setting this option to `false` will avoid loading the plugin
         headerOpts: {},
@@ -141,6 +133,10 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
         // `grapesjs-plugin-modal` plugin options
         // By setting this option to `false` will avoid loading the plugin
         customBlocksOpts: {},
+
+        // `grapesjs-plugin-carousel` plugin options
+        // By setting this option to `false` will avoid loading the plugin
+        carouselOpts: {},
     };
 
     // Load defaults
@@ -156,7 +152,6 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
         exportOpts,
         formsOpts,
 
-        sliderOpts,
         headerOpts,
         socialOpts,
         actionsOpts,
@@ -164,6 +159,7 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
         sproutOpts,
         modalOpts,
         customBlocksOpts,
+        carouselOpts,
     } = config;
 
     // Load plugins
@@ -175,8 +171,7 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
 
     // Change some components
     modifiers(editor, config);
-    
-    sliderOpts && pluginSlider(editor, sliderOpts);
+
     headerOpts && pluginHeader(editor, headerOpts);
     actionsOpts && pluginActions(editor, actionsOpts);
     avanceOpts && pluginAvance(editor, avanceOpts);
@@ -184,6 +179,7 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
     sproutOpts && pluginSproutvideo(editor, sproutOpts);
     modalOpts && pluginModal(editor, modalOpts);
     customBlocksOpts && customBlocks(editor, customBlocksOpts);
+    carouselOpts && carousel(editor, carouselOpts);
 
     // Load components
     components(editor, config);
