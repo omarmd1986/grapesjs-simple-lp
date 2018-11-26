@@ -119,7 +119,7 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
         // `grapesjs-blocks-avance` plugin options
         // By setting this option to `false` will avoid loading the plugin
         avanceOpts: {
-            blocks: ['grid-items', 'list-items', 'header', 'section', 'footer', 'iframe', 'button'],
+            blocks: ['grid-items', 'list-items', 'header', 'section', 'footer', 'iframe', 'button', 'progress-bar'],
         },
 
         // `grapesjs-plugin-sproutvideo` plugin options
