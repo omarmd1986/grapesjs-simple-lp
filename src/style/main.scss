@@ -1,5 +1,7 @@
 @import "variables.scss";
 
+@import "../../node_modules/animate.css/animate.min.css";
+
 .#{$prefix}pn-panel.#{$prefix}pn-views{
     .#{$prefix}pn-buttons {
         span {
@@ -7,6 +9,43 @@
         }  
     }   
 } 
+
+.gjs-toolbar {
+
+    background-color:transparent;
+    color: inherit;
+
+    .gjs-toolbar-item {
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+
+        -webkit-animation-duration: 0.75s;
+        animation-duration: 0.75s;
+        -webkit-animation-name: bounceIn;
+        animation-name: bounceIn;
+
+        min-width: 32px;
+        cursor: pointer;
+        position: relative;
+        color: #2d4150;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 0 7px 0 0;
+        padding: 0;
+        font-size: 14px;
+        list-style: none;
+        vertical-align: top;
+        font-weight: bold;
+
+        height: 32px;
+        background: linear-gradient(to bottom, white 0%, #eeeeee 100%);
+        box-shadow: 0 2px 6px 0 rgba(22, 45, 61, 0.55);
+        border-radius: 16px;
+        padding-top: 5%;
+    }
+}
+
 
 .#{$prefix} {
     @each $cnum, $ccol in (one, $primaryColor), (two, $secondaryColor), (three, $tertiaryColor), (four, $quaternaryColor) {
@@ -25,3 +64,4 @@
         }
     }
 }
+

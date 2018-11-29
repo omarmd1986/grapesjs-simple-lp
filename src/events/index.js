@@ -3,7 +3,7 @@ import grapesjs from 'grapesjs';
 export default (editor) => {
     let $ = grapesjs.$;
     let pn = editor.Panels;
-
+    
     let settingsManager = function () {
 
         // Load and show settings and style manager
@@ -26,4 +26,18 @@ export default (editor) => {
     editor.on('load', () => pn.removeButton('views','open-tm'));
     // close all the blocks
     editor.on('load', () => editor.BlockManager.getCategories().each(ctg => ctg.set('open', false)));
+    // Add some new styles.
+    editor.on('load', () => {
+        editor.addComponents(`<style>
+            .gjs-hovered{
+                outline: 1px dashed #3899ec !important;
+                outline-offset: 0px !important;
+            }   
+            .gjs-comp-selected{
+                outline: 2px dashed #3899ec !important;
+                outline-offset: 0px !important;
+            }
+        </style>`);
+    });
+    
 }

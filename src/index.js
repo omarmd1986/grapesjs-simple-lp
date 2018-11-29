@@ -195,7 +195,7 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
 
     // Load styles
     styles(editor, config);
-
+    
     // Catch events
     events(editor);
 
