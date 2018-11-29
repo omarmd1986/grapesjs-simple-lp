@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-simple-lp",
-  "version": "0.0.20",
+  "version": "0.0.22",
   "description": "GrapesJS Plugin Landing Page Builder",
   "main": "dist/grapesjs-simple-lp.min.js",
   "scripts": {
@@ -44,6 +44,7 @@
     "webpack-dev-server": "^2.9.4"
   },
   "dependencies": {
+    "animate.css": "^3.7.0",
     "grapesjs-blocks-avance": "0.*",
     "grapesjs-blocks-basic": "0.*",
     "grapesjs-component-countdown": "0.1.3",
