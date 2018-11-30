@@ -1,8 +1,8 @@
 import grapesjs from 'grapesjs';
 
 import {
-        cmdAddBasicStyles
-} from './../consts';
+cmdAddBasicStyles
+        } from './../consts';
 
 export default (editor) => {
     let $ = grapesjs.$;
@@ -28,10 +28,82 @@ export default (editor) => {
     editor.on('load', settingsManager);
     editor.on('load', () => $('div.gjs-clm-tags').css('display', 'none'));
     editor.on('load', () => pn.removeButton('views', 'open-tm'));
-    
+
+    // img and video resizable
+    editor.on('load', () => {
+        var comps = editor.DomComponents;
+        var originalImage = comps.getType('image');
+        var originalVideo = comps.getType('video');
+
+        comps.addType('image', {
+            model: originalImage.model.extend({
+                defaults: Object.assign({}, originalImage.model.prototype.defaults, {
+                    resizable: {
+                        // Unit used for height resizing
+                        unitHeight: 'px',
+
+                        // Unit used for width resizing
+                        unitWidth: '%',
+
+                        currentUnit: 0,
+
+                        // Minimum dimension
+                        minDim: 5,
+
+                        // Maximum dimension
+                        maxDim: 100,
+
+                        // Handlers
+                        tl: 0, // Top left
+                        tc: 0, // Top center
+                        tr: 0, // Top right
+                        cl: 1, // Center left
+                        cr: 1, // Center right
+                        bl: 0, // Bottom left
+                        bc: 0, // Bottom center
+                        br: 0 // Bottom right
+                    }
+                })
+            }),
+            view: originalImage.view
+        });
+        comps.addType('video', {
+            model: originalVideo.model.extend({
+                defaults: Object.assign({}, originalVideo.model.prototype.defaults, {
+                    resizable: {
+                        // Unit used for height resizing
+                        unitHeight: 'px',
+
+                        // Unit used for width resizing
+                        unitWidth: '%',
+
+                        currentUnit: 0,
+
+                        // Minimum dimension
+                        minDim: 5,
+
+                        // Maximum dimension
+                        maxDim: 100,
+
+                        // Handlers
+                        tl: 0, // Top left
+                        tc: 0, // Top center
+                        tr: 0, // Top right
+                        cl: 1, // Center left
+                        cr: 1, // Center right
+                        bl: 0, // Bottom left
+                        bc: 0, // Bottom center
+                        br: 0 // Bottom right
+                    }
+                })
+            }),
+            view: originalVideo.view
+        });
+    });
+
     // close all the blocks
     editor.on('load', () => editor.BlockManager.getCategories().each(ctg => ctg.set('open', false)));
-    
+
     // Add some new styles.
     editor.on('load', () => editor.runCommand(cmdAddBasicStyles));
 
@@ -61,7 +133,7 @@ export default (editor) => {
         if (!el) {
             return;
         }
-        
+
         el.classList.add('slp-dropIn');
     });
 
