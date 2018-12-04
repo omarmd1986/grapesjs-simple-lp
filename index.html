@@ -19,6 +19,25 @@
 
         <div id="gjs" style="height:0px; overflow:hidden">
 
+            <div id="abc"></div>
+
+            <style>
+                #abc{
+                    background-color: red; border: 5px solid blue; width: 100%; height: 250px;
+                }
+                @media (max-width: 320px) {
+                    #abc{
+                        background-color: yellow;
+                    }
+                }
+                
+                @media (min-width: 321px) and (max-width: 768px) {
+                    #abc{
+                        background-color: green;
+                    }
+                }
+            </style>
+
         </div>
 
 
@@ -38,10 +57,10 @@
                             traitLabel: 'Add on',
                             name: 'addon',
                             wildcard: '##',
-                            options: [{value:'value',name:'name'},{value:'value1',name:'name1'}]
+                            options: [{value: 'value', name: 'name'}, {value: 'value1', name: 'name1'}]
                         }
                     }
-                            }
+                }
             });
         </script>
     </body>

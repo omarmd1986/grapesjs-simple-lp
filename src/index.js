@@ -20,6 +20,7 @@ import panels from './panels';
 import styles from './styles';
 import events from './events';
 import modifiers from './modifiers';
+import hideManager from './hide_manager';
 
 export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) => {
     let config = opts;
@@ -195,8 +196,11 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
 
     // Load styles
     styles(editor, config);
-    
+
     // Catch events
     events(editor);
+    
+    // Catch events
+    hideManager(editor, config);
 
 });
