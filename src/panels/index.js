@@ -3,8 +3,9 @@ cmdImport,
         cmdDeviceDesktop,
         cmdDeviceTablet,
         cmdDeviceMobile,
-        cmdClear
-        } from './../consts';
+        cmdClear,
+        cmdToggleHideManager
+} from './../consts';
 
 export default (editor, config) => {
     const pn = editor.Panels;
@@ -32,22 +33,27 @@ export default (editor, config) => {
                     command: swv,
                     context: swv,
                     className: 'fa fa-square-o',
+                    attributes: { title: 'View components' }
                 }, {
                     id: 'undo',
                     className: 'fa fa-undo',
                     command: e => e.runCommand('core:undo'),
+                    attributes: { title: 'Undo' }
                 }, {
                     id: 'redo',
                     className: 'fa fa-repeat',
                     command: e => e.runCommand('core:redo'),
+                    attributes: { title: 'Redo' }
                 }, {
                     id: cmdImport,
                     className: 'fa fa-download',
                     command: e => e.runCommand(cmdImport),
+                    attributes: { title: 'Import' }
                 }, {
                     id: cmdClear,
                     className: 'fa fa-trash',
                     command: e => e.runCommand(cmdClear),
+                    attributes: { title: 'Clear the canvas' }
                 }],
         }, {
             id: 'views',
@@ -56,6 +62,7 @@ export default (editor, config) => {
                     command: osm,
                     active: true,
                     className: 'fa fa-paint-brush',
+                    attributes: { title: 'Open the Style Manager' },
                 }, {
                     id: otm,
                     command: otm,
@@ -65,6 +72,7 @@ export default (editor, config) => {
                     id: obl,
                     command: obl,
                     className: 'fa fa-th-large',
+                    attributes: { title: 'Open the Blocks Manager' },
                 }],
         }]);
 
@@ -75,14 +83,23 @@ export default (editor, config) => {
             command: cmdDeviceDesktop,
             className: 'fa fa-desktop',
             active: 1,
+            attributes: { title: 'Change to Desktop mode' },
         }, {
             id: cmdDeviceTablet,
             command: cmdDeviceTablet,
             className: 'fa fa-tablet',
+            attributes: { title: 'Change to Tablet mode' },
         }, {
             id: cmdDeviceMobile,
             command: cmdDeviceMobile,
             className: 'fa fa-mobile',
+            attributes: { title: 'Change to Mobile mode' },
+        }, {
+            id: cmdToggleHideManager,
+            command: e => e.runCommand(cmdToggleHideManager),
+            className: 'fa fa-eye-slash',
+            attributes: { title: 'Show/Hide the Hide Manager' },
+            context: cmdToggleHideManager,
         }]);
 
     const openBl = pn.getButton('views', obl);

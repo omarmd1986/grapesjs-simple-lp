@@ -5,6 +5,12 @@ export const
         cmdDeviceTablet = 'set-device-tablet',
         cmdDeviceMobile = 'set-device-mobile',
         cmdClear = 'canvas-clear',
+        cmdHide = 'slp-hide-cmd',
+        cmdShowHideManager = 'slp-show-hm',
+        cmdHideHideManager = 'slp-hide-hm',
+        cmdToggleHideManager = 'slp-toggle-hm',
+        
+        showInDesktop = 'showInDesktop',
 
         basicStyle = `<style>
             .gjs-hovered{
@@ -16,14 +22,20 @@ export const
                 outline-offset: 0px !important;
             }
             
-            @media (max-width: 320px) {
+            @media (max-width: 350px) {
                 .hide-mobile, .hide-Mobile, .hide-Mobile-portrait, .hide-mobile-portrait {
                     display: none;
                 }
             }
 
-            @media (min-width: 321px) and (max-width: 768px) {
+            @media (min-width: 351px) and (max-width: 768px) {
                 .hide-tablet, .hide-Tablet{
+                    display: none;
+                }
+            }
+
+            @media (min-width: 769px) {
+                .hide-desktop, .hide-Desktop{
                     display: none;
                 }
             }

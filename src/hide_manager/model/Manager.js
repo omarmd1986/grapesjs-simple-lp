@@ -41,19 +41,31 @@ module.exports = editor => {
             return this;
         },
 
+        hideView() {
+            View.hide();
+        },
+
+        showView() {
+            View.show();
+        },
+
+        toogle() {
+            View.isHide() ? this.showView() : this.hideView();
+        },
+
         hide(device, model) {
             /*If not created*/
             const d = device.toLowerCase().split(' ').join('-');
-            
+
             if (!layers[d]) {
                 layers[d] = [];
             }
 
             layers[d].push(model);
-            
+
             // Add classes
             model.addClass(`hide-${d}`);
-            
+
             console.log(layers)
         }
 

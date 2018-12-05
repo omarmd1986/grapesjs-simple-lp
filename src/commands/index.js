@@ -6,7 +6,11 @@ cmdImport,
         cmdDeviceDesktop,
         cmdDeviceTablet,
         cmdDeviceMobile,
-        cmdClear
+        cmdClear,
+        cmdHide,
+        cmdShowHideManager,
+        cmdHideHideManager,
+        cmdToggleHideManager
 } from './../consts';
 
 export default (editor, config) => {
@@ -26,7 +30,7 @@ export default (editor, config) => {
         }
     });
 
-    cm.add('slp-hide-cmd', (e, s, params) => {
+    cm.add(cmdHide, (e, s, params) => {
         let hm = e.editor.get('HideManager');
         if (!hm) {
             console.error('Not Hide Manager found!')
@@ -36,10 +40,10 @@ export default (editor, config) => {
         let device = e.getDevice(),
                 model = params.model || null;
 
-        if ('Desktop' === device) {
-            return;
-        }
-
         hm.hide(device, model);
     });
+    
+    cm.add(cmdShowHideManager, (e) => e.editor.get('HideManager').showView());
+    cm.add(cmdHideHideManager, (e) => e.editor.get('HideManager').hideView());
+    cm.add(cmdToggleHideManager, (e) => e.editor.get('HideManager').toogle());
 }

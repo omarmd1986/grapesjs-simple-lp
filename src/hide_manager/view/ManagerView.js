@@ -141,6 +141,15 @@ module.exports = () => {
             return _container;
         },
 
+        isHide() {
+            let c = _container;
+            if (!c) {
+                console.error('Container not found!');
+                return;
+            }
+            return 'none' === c.css('display');
+        },
+
         show() {
             let c = _container;
             if (!c) {

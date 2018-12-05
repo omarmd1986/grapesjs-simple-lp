@@ -1,3 +1,8 @@
+import {
+    showInDesktop,
+    cmdHide
+} from './../../consts';
+
 module.exports = (editor) => {
 
     editor.on('component:selected', (model) => {
@@ -34,7 +39,7 @@ module.exports = (editor) => {
             if (false === hasHideCommand(tbArray)) {
                 tbArray.push({
                     attributes: {class: 'fa fa-eye-slash', id: 'slp-hide-cmd', title: 'Hide the element to this device'},
-                    command: () => editor.runCommand('slp-hide-cmd', {model: model})
+                    command: () => editor.runCommand(cmdHide, {model: model})
                 });
             }
 
@@ -48,7 +53,7 @@ module.exports = (editor) => {
             return;
         }
 
-        if ('Desktop' === currentView) {
+        if ('Desktop' === currentView && (true !== editor.editor.get(showInDesktop))) {
             // Remove if exist
             tb = removeHideCommand(tb);
         } else {

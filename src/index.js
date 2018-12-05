@@ -77,6 +77,8 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
             wildcard: '',
             options: []
         },
+        
+        allowHideCmInDesktop: true,
 
         // `grapesjs-blocks-basic` plugin options
         // By setting this option to `false` will avoid loading the plugin
