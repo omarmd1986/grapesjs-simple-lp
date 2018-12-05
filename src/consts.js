@@ -15,6 +15,18 @@ export const
                 outline: 2px dashed #3899ec !important;
                 outline-offset: 0px !important;
             }
+            
+            @media (max-width: 320px) {
+                .hide-mobile, .hide-Mobile, .hide-Mobile-portrait, .hide-mobile-portrait {
+                    display: none;
+                }
+            }
+
+            @media (min-width: 321px) and (max-width: 768px) {
+                .hide-tablet, .hide-Tablet{
+                    display: none;
+                }
+            }
         
             @-webkit-keyframes slp-dropIn {
               from,
