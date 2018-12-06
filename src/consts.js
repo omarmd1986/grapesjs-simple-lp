@@ -24,19 +24,19 @@ export const
             
             @media (max-width: 350px) {
                 .hide-mobile, .hide-Mobile, .hide-Mobile-portrait, .hide-mobile-portrait {
-                    display: none;
+                    display: none !important;
                 }
             }
 
             @media (min-width: 351px) and (max-width: 768px) {
                 .hide-tablet, .hide-Tablet{
-                    display: none;
+                    display: none !important;
                 }
             }
 
             @media (min-width: 769px) {
                 .hide-desktop, .hide-Desktop{
-                    display: none;
+                    display: none !important;
                 }
             }
         

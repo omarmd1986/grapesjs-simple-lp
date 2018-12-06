@@ -3,8 +3,39 @@ import interact from 'interactjs'
 
 module.exports = () => {
     let $ = grapesjs.$;
+    
+    // Extend the cash-dom library to support animations.
+    (function(){
+        // Extend the cash-dom functionalities
+        $.fn.extend({
+            animateCss: function (animationName, callback) {
+                var animationEnd = (function (el) {
+                    var animations = {
+                        animation: 'animationend',
+                        OAnimation: 'oAnimationEnd',
+                        MozAnimation: 'mozAnimationEnd',
+                        WebkitAnimation: 'webkitAnimationEnd',
+                    };
 
+                    for (var t in animations) {
+                        if (el.style[t] !== undefined) {
+                            return animations[t];
+                        }
+                    }
+                })(document.createElement('div'));
 
+                this.addClass('animated ' + animationName).one(animationEnd, function () {
+                    $(this).removeClass('animated ' + animationName);
+
+                    if (typeof callback === 'function')
+                        callback();
+                });
+
+                return this;
+            },
+        });
+    })();
+    
     var dragMoveListener = function (event) {
 
         var target = event.target,
@@ -30,35 +61,23 @@ module.exports = () => {
 
         } else {
             const html = `
-                <div id="${_id}" class="left-panel-frame panel-index-undefined hidden-items-panel" style="visibility: inherit; opacity: 1;">
+                <div id="${_id}" class="animated faster left-panel-frame hidden-items-panel">
                     <header class="panel-header light">
                         <div class="panel-header-title">
                             <div class="panel-header-title-content">
-                                <span>Hidden Elements (0)</span>
+                                <span>Hidden Elements</span>
                             </div>
                         </div>
                     </header>
                     <div class="left-panel-frame-content hidden-items-panel">
-                        <div class="custom-scroll " style="height: inherit;">
-                            <div class="outer-container" style="height: 100%;">
-                                <div class="inner-container" style="height: 100%; margin-right: -15px;">
-                                    <div class="content-wrapper" style="height: 100%; overflow-y: visible; margin-right: 0px;">
-                                        <div class="content">
-                                            <div class="scrollable">
-                                                <div class="no-items">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="container-comps"></div>
                     </div>
                 </div>
                 `;
 
             // The container is not created
             $('.gjs-cv-canvas').append(html);
+            
             container = $(`#${_id}`);
 
             iniInteract(`#${_id}`);
@@ -101,7 +120,7 @@ module.exports = () => {
 
                     // minimum size
                     restrictSize: {
-                        min: {width: 100, height: 50},
+                        min: {width: 220, height: 300},
                     },
 
                     inertia: true,
@@ -127,6 +146,8 @@ module.exports = () => {
                 });
     };
 
+    var desIdFy = id => id.toUpperCase().split('-').join(' ').split('_').join(' ');
+
     var _id = null;
     var _container = null;
 
@@ -145,9 +166,9 @@ module.exports = () => {
             let c = _container;
             if (!c) {
                 console.error('Container not found!');
-                return;
+                return true;
             }
-            return 'none' === c.css('display');
+            return ('none' === c.css('display'));
         },
 
         show() {
@@ -157,6 +178,7 @@ module.exports = () => {
                 return;
             }
             c.css('display', 'block');
+            c.animateCss('fadeIn faster')
             return this;
         },
 
@@ -166,8 +188,31 @@ module.exports = () => {
                 console.error('Container not found!');
                 return;
             }
-            c.css('display', 'none');
+            c.animateCss('fadeOut faster', () => {c.css('display', 'none')})
             return this;
+        },
+
+        /**
+         * 
+         * @param {type} modelCollection
+         * @returns {undefined}
+         */
+        reset(modelCollection) {
+            _container.find('.container-comps').html('');
+            modelCollection.forEach(model => this.add(model));
+        },
+
+        add(model) {
+            let type = "" === model.get('type') ? model.get('tagName') : model.get('type')
+            let name = desIdFy(type);
+            
+            const html = `<div class="hidden-item">
+                            <div class="icon fa fa-${type}"></div>
+                            <div class="label">${name}: </div>
+                            <div class="add-button"></div>
+                        </div>`;
+            
+            $(html).prependTo(_container.find('.container-comps').first());
         }
     };
 

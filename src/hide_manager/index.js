@@ -1,6 +1,6 @@
 import {
-    showInDesktop
-} from './../consts';
+showInDesktop
+        } from './../consts';
 
 module.exports = (editor, config) => {
 
@@ -8,7 +8,7 @@ module.exports = (editor, config) => {
         // Allor or not hide in desktop.
         // Will control the toolbar action.
         editor.editor.set(showInDesktop, config.allowHideCmInDesktop)
-        
+
         var Manager = require('./model/Manager');
         editor.editor.set('HideManager', new Manager(editor).init());
     });

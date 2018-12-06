@@ -21,6 +21,9 @@ module.exports = editor => {
         }
         currentView = editor.getDevice();
 
+        // remove all the elements hide in this device.
+        View.reset(list(currentView));
+
         if ('Desktop' === currentView) {
             // Hide the container
             View.hide();
@@ -29,9 +32,19 @@ module.exports = editor => {
 
         View.show();
     }
+    
+    var refreshList = () => View.reset(list(currentView));
+
+    var idFy = id => id.toLowerCase().split(' ').join('-');
+
+    var list = device => layers[idFy(device)] || [];
 
     return {
         init() {
+            // Load all the components hide by devices here
+            // Ask the editor about all his components
+            // and detect the hiden class and populate the layers object groug by devices.
+
             editor.on('run:set-device-desktop', updateView);
             editor.on('run:set-device-tablet', updateView);
             editor.on('run:set-device-mobile', updateView);
@@ -53,20 +66,40 @@ module.exports = editor => {
             View.isHide() ? this.showView() : this.hideView();
         },
 
+        list(device) {
+            return list(device);
+        },
+
         hide(device, model) {
             /*If not created*/
-            const d = device.toLowerCase().split(' ').join('-');
+            const d = idFy(device)
 
             if (!layers[d]) {
-                layers[d] = [];
+                layers[d] = new Set();
             }
-
-            layers[d].push(model);
+            
+            layers[d].has(model) ? null : layers[d].add(model);
 
             // Add classes
             model.addClass(`hide-${d}`);
+            
+            refreshList();
+        },
 
-            console.log(layers)
+        show(device, model) {
+            /*If not created*/
+            const d = idFy(device)
+
+            if (!layers[d]) {
+                layers[d] = new Set();
+            }
+
+            layers[d].delete(model)
+
+            // Add classes
+            model.removeClass(`hide-${d}`);
+            
+            refreshList();
         }
 
     };

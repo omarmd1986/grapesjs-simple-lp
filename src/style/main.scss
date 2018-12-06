@@ -17,7 +17,7 @@
 }
 
 .left-panel-frame {
-    box-shadow: 0 0 14px 0 rgba(22, 45, 61, 0.36);
+    box-shadow: 0 0 14px 0 rgba(22, 45, 61, 0.5);
     position: absolute;
     top: 32px;
     left: 70px;
@@ -28,6 +28,7 @@
     background-color: #fff;
     z-index: 1105;
     padding-left: 6px;
+    padding-right: 6px;
 }
 
 .left-panel-frame .panel-header {
@@ -69,44 +70,8 @@
 
 .hidden-items-panel {
     font-size: 14px;
-    max-height: calc(100vh - 50px - 165px);
-}
-
-.hidden-items-panel .custom-scroll {
-    width: 352px;
-}
-
-.custom-scroll .outer-container {
-    overflow: hidden;
-}
-.custom-scroll .inner-container {
-    overflow-x: hidden;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-}
-
-.hidden-items-panel .custom-scroll .content {
-    max-height: calc(100vh - 50px - 54px - 165px);
-    position: relative;
-}
-
-.hidden-items-panel .custom-scroll .content .scrollable {
-    min-height: 450px;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: column;
-    flex-direction: column;
-}
-
-.hidden-items-panel .custom-scroll .content .no-items {
-    height: 120px;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-align-items: center;
-    align-items: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    border-bottom: 1px solid #e3e3e3;
+    max-height: calc(100% - 60px);
+    overflow: overlay;
 }
 
 .gjs-pn-panel.gjs-pn-views-container > div > div {
@@ -117,6 +82,103 @@
     animation-duration: 0.5s;
     -webkit-animation-name: fadeIn;
     animation-name: fadeIn;
+}
+
+
+.hidden-item {
+    height: 60px;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+    background-color: #fff;
+}
+
+.hidden-item .icon {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    box-shadow: 0 0 4px 0 rgba(43, 86, 114, 0.2);
+    border-radius: 8px;
+    background-repeat: no-repeat;
+    left: 5px;
+    top: 10px;
+    display: -webkit-flex;
+    display: flex;
+    padding-top: 7px;
+    padding-left: 7px;
+    font-size: x-large;
+}
+
+
+.hidden-item .label {
+    position: relative;
+    margin-left: 50px;
+    line-height: 60px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: calc(100% - 100px);
+}
+
+.hidden-item .add-button {
+    position: absolute;
+    height: 26px;
+    width: 26px;
+    right: 17px;
+    top: 17px;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+}
+
+/*ICONS*/
+.fa-div:before {
+  content: "\f187";
+}
+.fa-header:before{
+    content: "\f1dc";
+}
+.fa-text:before{
+    content: "\f035";
+}
+.fa-link:before{
+    content: "\f0c1";
+}
+.fa-map:before{
+    content: "\f279";
+}
+.fa-video:before{
+    content: "\f03d";
+}
+.fa-countdown:before{
+    content: "\f017";
+}
+.fa-carousel:before{
+    content: "\f1de";
+}
+.fa-form:before{
+    content: "\f11c"
+}
+.fa-marketing-button:before{
+    content: "\f067";
+}
+.fa-marketing-progress-bar:before{
+    content: "\f242";
+}
+.fa-iframe:before{
+    content: "\f14c";
+}
+.fa-modal:before{
+    content: "\f08e";
+}
+.fa-section:before,
+.fa-footer:before{
+    content: "\f096";
+}
+.fa-social-link:before{
+     content: "\f099";
+}
+.fa-social-link-block:before{
+       content: "\f009";
 }
 
 .gjs-toolbar {
