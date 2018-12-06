@@ -32,7 +32,14 @@ module.exports = editor => {
 
         View.show();
     }
-    
+
+    var removeComponent = (model) => {
+        for (var device in layers) {
+            layers[device].delete(model)
+        }
+        refreshList();
+    };
+
     var refreshList = () => View.reset(list(currentView));
 
     var idFy = id => id.toLowerCase().split(' ').join('-');
@@ -48,10 +55,17 @@ module.exports = editor => {
             editor.on('run:set-device-desktop', updateView);
             editor.on('run:set-device-tablet', updateView);
             editor.on('run:set-device-mobile', updateView);
+            editor.on('run:core:canvas-clear', this.clear);
+            editor.on('component:remove', removeComponent);
 
             Toolbar(editor);
 
             return this;
+        },
+        
+        clear(device){
+            device ? layers[device] = new Set() : layers = {};
+            refreshList();
         },
 
         hideView() {
@@ -77,12 +91,12 @@ module.exports = editor => {
             if (!layers[d]) {
                 layers[d] = new Set();
             }
-            
+
             layers[d].has(model) ? null : layers[d].add(model);
 
             // Add classes
             model.addClass(`hide-${d}`);
-            
+
             refreshList();
         },
 
@@ -98,7 +112,7 @@ module.exports = editor => {
 
             // Add classes
             model.removeClass(`hide-${d}`);
-            
+
             refreshList();
         }
 
