@@ -3,7 +3,7 @@ import interact from 'interactjs';
 import Toolbar from './../view/Toolbar';
 
 module.exports = editor => {
-    var currentView = editor.getDevice();
+    var currentView = null;
 
     var View = require('./../view/ManagerView');
     View = new View().init('slp-hide-manager').hide();
@@ -46,6 +46,39 @@ module.exports = editor => {
 
     var list = device => layers[idFy(device)] || [];
 
+    /**
+     * Load the hide components,
+     * @returns {undefined}
+     */
+    (function () {
+        var hasClass = (model) => {
+            model.get('classes').each(c => {
+                if (c.get('name') && c.get('name').startsWith('spl-hide-')) {
+                    let device = c.get('name').split('spl-hide-')[1];
+                    
+                    if (!layers[device]) {
+                        layers[device] = new Set();
+                    }
+                    
+                    layers[device].has(model) ? null : layers[device].add(model);
+                }
+            });
+
+            return true;
+        };
+
+        var getAllComponents = (model, result = [], eva = hasClass) => {
+            eva && eva(model) && result.push(model);
+            model.components().each(mod => getAllComponents(mod, result));
+            return result;
+        };
+
+        getAllComponents(editor.DomComponents.getWrapper());
+        
+        // updateView
+        updateView();
+    })();
+
     return {
         init() {
             // Load all the components hide by devices here
@@ -58,10 +91,10 @@ module.exports = editor => {
             editor.on('run:core:canvas-clear', this.clear);
             editor.on('component:remove', removeComponent);
 
-            View.itemRemoveCb(this.show)
+            View.itemRemoveCb(this.show);
 
             Toolbar(editor);
-
+            
             return this;
         },
 
@@ -97,7 +130,7 @@ module.exports = editor => {
             layers[d].has(model) ? null : layers[d].add(model);
 
             // Add classes
-            model.addClass(`hide-${d}`);
+            model.addClass(`spl-hide-${d}`);
 
             refreshList();
         },
@@ -118,7 +151,7 @@ module.exports = editor => {
             layers[d].delete(model)
 
             // Add classes
-            model.removeClass(`hide-${d}`);
+            model.removeClass(`spl-hide-${d}`);
 
             refreshList();
         }

@@ -23,19 +23,19 @@ export const
             }
             
             @media (max-width: 350px) {
-                .hide-mobile, .hide-Mobile, .hide-Mobile-portrait, .hide-mobile-portrait {
+                .spl-hide-mobile, .spl-hide-Mobile, .spl-hide-Mobile-portrait, .spl-hide-mobile-portrait {
                     display: none !important;
                 }
             }
 
             @media (min-width: 351px) and (max-width: 768px) {
-                .hide-tablet, .hide-Tablet{
+                .spl-hide-tablet, .spl-hide-Tablet{
                     display: none !important;
                 }
             }
 
             @media (min-width: 769px) {
-                .hide-desktop, .hide-Desktop{
+                .spl-hide-desktop, .spl-hide-Desktop{
                     display: none !important;
                 }
             }
