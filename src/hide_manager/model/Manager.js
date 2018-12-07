@@ -58,12 +58,14 @@ module.exports = editor => {
             editor.on('run:core:canvas-clear', this.clear);
             editor.on('component:remove', removeComponent);
 
+            View.itemRemoveCb(this.show)
+
             Toolbar(editor);
 
             return this;
         },
-        
-        clear(device){
+
+        clear(device) {
             device ? layers[device] = new Set() : layers = {};
             refreshList();
         },
@@ -101,8 +103,13 @@ module.exports = editor => {
         },
 
         show(device, model) {
-            /*If not created*/
-            const d = idFy(device)
+            if (typeof device === 'object') {
+                // Was trigger from the view.
+                console.log(device)
+                model = device;
+                device = currentView;
+            }
+            const d = idFy(device);
 
             if (!layers[d]) {
                 layers[d] = new Set();

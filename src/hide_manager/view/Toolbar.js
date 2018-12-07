@@ -1,7 +1,7 @@
 import {
-    showInDesktop,
-    cmdHide
-} from './../../consts';
+showInDesktop,
+        cmdHide
+        } from './../../consts';
 
 module.exports = (editor) => {
 
@@ -39,7 +39,10 @@ module.exports = (editor) => {
             if (false === hasHideCommand(tbArray)) {
                 tbArray.push({
                     attributes: {class: 'fa fa-eye-slash', id: 'slp-hide-cmd', title: 'Hide the element to this device'},
-                    command: () => editor.runCommand(cmdHide, {model: model})
+                    command: () => {
+                        editor.runCommand(cmdHide, {model: model})
+                        editor.selectRemove(model);
+                    }
                 });
             }
 

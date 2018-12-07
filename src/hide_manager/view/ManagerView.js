@@ -3,9 +3,9 @@ import interact from 'interactjs'
 
 module.exports = () => {
     let $ = grapesjs.$;
-    
+
     // Extend the cash-dom library to support animations.
-    (function(){
+    (function () {
         // Extend the cash-dom functionalities
         $.fn.extend({
             animateCss: function (animationName, callback) {
@@ -35,7 +35,7 @@ module.exports = () => {
             },
         });
     })();
-    
+
     var dragMoveListener = function (event) {
 
         var target = event.target,
@@ -77,7 +77,7 @@ module.exports = () => {
 
             // The container is not created
             $('.gjs-cv-canvas').append(html);
-            
+
             container = $(`#${_id}`);
 
             iniInteract(`#${_id}`);
@@ -148,14 +148,39 @@ module.exports = () => {
 
     var desIdFy = id => id.toUpperCase().split('-').join(' ').split('_').join(' ');
 
+    var trigger = (event, data) => {
+        _events[event].forEach(fn => fn(data));
+    };
+
     var _id = null;
     var _container = null;
+    var _map = new Map();
+    var _events = {
+        'hidden:item:remove': []
+    };
 
     return {
         init(id) {
             _id = id;
             _container = getContainer();
+
+            $('body').on('click', '.hidden-item .add-button', function (e) {
+                let hiddenItem = $(this).parent('.hidden-item');
+                const index = hiddenItem.index();
+                hiddenItem.remove();
+                trigger('hidden:item:remove', _map.get(index));
+            });
+
             return this;
+        },
+
+        itemRemoveCb(fn) {
+            this.on('hidden:item:remove', fn);
+        },
+
+        on(event, fn) {
+            _events[event] ? _events[event] = [] : null;
+            _events[event].push(fn);
         },
 
         get() {
@@ -188,7 +213,9 @@ module.exports = () => {
                 console.error('Container not found!');
                 return;
             }
-            c.animateCss('fadeOut faster', () => {c.css('display', 'none')})
+            c.animateCss('fadeOut faster', () => {
+                c.css('display', 'none')
+            })
             return this;
         },
 
@@ -199,19 +226,23 @@ module.exports = () => {
          */
         reset(modelCollection) {
             _container.find('.container-comps').html('');
-            modelCollection.forEach(model => this.add(model));
+            let index = 0;
+            _map.clear();
+            modelCollection.forEach(model => {
+                _map.set(index++, model);
+                this.add(model);
+            });
         },
 
         add(model) {
             let type = "" === model.get('type') ? model.get('tagName') : model.get('type')
             let name = desIdFy(type);
-            
             const html = `<div class="hidden-item">
                             <div class="icon fa fa-${type}"></div>
-                            <div class="label">${name}: </div>
-                            <div class="add-button"></div>
+                            <div class="label">${name}</div>
+                            <div class="add-button fa fa-eye"></div>
                         </div>`;
-            
+
             $(html).prependTo(_container.find('.container-comps').first());
         }
     };

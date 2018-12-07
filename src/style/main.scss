@@ -96,7 +96,6 @@
     position: absolute;
     height: 40px;
     width: 40px;
-    box-shadow: 0 0 4px 0 rgba(43, 86, 114, 0.2);
     border-radius: 8px;
     background-repeat: no-repeat;
     left: 5px;
@@ -128,11 +127,12 @@
     border-radius: 50%;
     text-align: center;
     cursor: pointer;
+    padding-top: 6px;
 }
 
 /*ICONS*/
 .fa-div:before {
-  content: "\f187";
+    content: "\f187";
 }
 .fa-header:before{
     content: "\f1dc";
@@ -175,10 +175,10 @@
     content: "\f096";
 }
 .fa-social-link:before{
-     content: "\f099";
+    content: "\f099";
 }
 .fa-social-link-block:before{
-       content: "\f009";
+    content: "\f009";
 }
 
 .gjs-toolbar {
