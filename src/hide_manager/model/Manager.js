@@ -78,7 +78,7 @@ module.exports = editor => {
             View.show();
         },
 
-        toogle() {
+        toggle() {
             View.isHide() ? this.showView() : this.hideView();
         },
 

@@ -42,8 +42,8 @@ export default (editor, config) => {
 
         hm.hide(device, model);
     });
-    
+
     cm.add(cmdShowHideManager, (e) => e.editor.get('HideManager').showView());
     cm.add(cmdHideHideManager, (e) => e.editor.get('HideManager').hideView());
-    cm.add(cmdToggleHideManager, (e) => e.editor.get('HideManager').toogle());
+    cm.add(cmdToggleHideManager, (e) => e.editor.get('HideManager').toggle());
 }
