@@ -105,9 +105,29 @@ export default (editor, config) => {
 
     // Add some new styles.
     editor.on('load', () => editor.runCommand(cmdAddBasicStyles));
-    
+
     // change the style
     editor.on('load', () => styles(editor, config));
+
+    // Sorting the Categories.
+    editor.on('load', () => {
+        const blockManager = editor.BlockManager;
+        let cat = blockManager.getCategories();
+        [
+            'Containers'
+                    , 'Basic'
+                    , 'Forms'
+                    , 'Extra'
+                    , 'Advanced'
+                    , 'Marketing'
+                    , 'Social'
+        ].forEach((k, o) => {
+            let ca = cat.find(c => c.get('label').toLowerCase() === k.toLowerCase());
+            ca && ca.set('order', o);
+        });
+        cat.each(c => c.get('order') && c.set('order', 10));
+        blockManager.render();
+    });
 
     // Adding a new random class to avoid changes in all the elements with the same class
     editor.on('component:selected', (model) => {
