@@ -34,7 +34,35 @@ export default (editor, config) => {
         attributes: {class: 'gjs-fonts gjs-f-h1p'},
         content: `<section class="bdg-sect">
       <h1 class="heading">Insert title here</h1>
-      <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+      <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiumdod tempor incididunt ut labore et dolore magna aliqua</p>
       </section>`
+    });
+
+    toAdd('divider') && bm.add('divider', {
+        category: 'Basic',
+        label: 'Divider',
+        attributes: {class: 'gjs-fonts gjs-f-divider'},
+        content: `<hr />`
+    });
+
+    /*Columns*/
+    //blocks: ['1column', '2column','3column','4column'],
+    toAdd('1column') && bm.add('1column', {
+        category: 'Containers',
+        label: '1 Column',
+        attributes: {class:'gjs-fonts gjs-f-b1'},
+        content: `<div class="spl-container"><div class="spl-row spl-row-md"><div class="spl-col-md-12"></div></div></div>`
+    });
+    toAdd('2column') && bm.add('2column', {
+        category: 'Containers',
+        label: '2 Columns',
+        attributes: {class: "gjs-fonts gjs-f-b2"},
+        content: `<div class="spl-container"><div class="spl-row spl-row-md"><div class="spl-col-md-6"></div><div class="spl-col-md-6"></div></div></div>`
+    });
+    toAdd('3column') && bm.add('3column', {
+        category: 'Containers',
+        label: '3 Columns',
+        attributes: {class: "gjs-fonts gjs-f-b3"},
+        content: `<div class="spl-container"><div class="spl-row spl-row-md"><div class="spl-col-md-4"></div><div class="spl-col-md-4"></div><div class="spl-col-md-4"></div></div></div>`
     });
 }

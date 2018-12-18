@@ -104,7 +104,7 @@ export default (editor) => {
     // close all the blocks
     editor.on('load', () => editor.BlockManager.getCategories().each(ctg => ctg.set('open', false)));
 
-    // Add some new styles.
+        // Add some new styles.
     editor.on('load', () => editor.runCommand(cmdAddBasicStyles));
 
     // Adding a new random class to avoid changes in all the elements with the same class

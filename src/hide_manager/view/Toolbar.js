@@ -1,7 +1,4 @@
-import {
-showInDesktop,
-        cmdHide
-        } from './../../consts';
+import { showInDesktop, cmdHide } from './../../consts';
 
 module.exports = (editor) => {
 

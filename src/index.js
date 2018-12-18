@@ -27,7 +27,7 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
 
     let defaults = {
         // Which blocks to add
-        blocks: ['link-block', 'quote', 'text-basic'],
+        blocks: ['link-block', 'quote', 'text-basic', 'divider', '1column', '2column','3column','4column'],
 
         // Modal import title
         modalImportTitle: 'Import',
@@ -83,7 +83,8 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
         // `grapesjs-blocks-basic` plugin options
         // By setting this option to `false` will avoid loading the plugin
         blocksBasicOpts: {
-            flexGrid: 1,
+            blocks: ['text', 'link', 'image', 'video', 'map'],
+            flexGrid: 0,
             stylePrefix: `mrk-row-` // To avoid CSS conflicts whit bootstrap
         },
 
