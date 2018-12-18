@@ -113,6 +113,7 @@ export default (editor, config) => {
     editor.on('load', () => {
         const blockManager = editor.BlockManager;
         let cat = blockManager.getCategories();
+        cat.each(c => c.set('order', 10));
         [
             'Containers'
                     , 'Basic'
@@ -125,7 +126,6 @@ export default (editor, config) => {
             let ca = cat.find(c => c.get('label').toLowerCase() === k.toLowerCase());
             ca && ca.set('order', o);
         });
-        cat.each(c => c.get('order') && c.set('order', 10));
         blockManager.render();
     });
 
