@@ -1,10 +1,9 @@
 import grapesjs from 'grapesjs';
+import styles from '../styles/';
 
-import {
-cmdAddBasicStyles
-        } from './../consts';
+import {cmdAddBasicStyles} from './../consts';
 
-export default (editor) => {
+export default (editor, config) => {
     let $ = grapesjs.$;
     let pn = editor.Panels;
 
@@ -104,8 +103,11 @@ export default (editor) => {
     // close all the blocks
     editor.on('load', () => editor.BlockManager.getCategories().each(ctg => ctg.set('open', false)));
 
-        // Add some new styles.
+    // Add some new styles.
     editor.on('load', () => editor.runCommand(cmdAddBasicStyles));
+    
+    // change the style
+    editor.on('load', () => styles(editor, config));
 
     // Adding a new random class to avoid changes in all the elements with the same class
     editor.on('component:selected', (model) => {

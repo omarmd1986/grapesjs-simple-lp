@@ -17,7 +17,6 @@ import commands from './commands';
 import blocks from './blocks';
 import components from './components';
 import panels from './panels';
-import styles from './styles';
 import events from './events';
 import modifiers from './modifiers';
 import hideManager from './hide_manager';
@@ -197,11 +196,8 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
     // Load panels
     panels(editor, config);
 
-    // Load styles
-    styles(editor, config);
-
     // Catch events
-    events(editor);
+    events(editor, config);
     
     // Catch events
     hideManager(editor, config);
