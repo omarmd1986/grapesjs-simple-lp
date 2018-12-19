@@ -47,22 +47,28 @@ export default (editor, config) => {
 
     /*Columns*/
     //blocks: ['1column', '2column','3column','4column'],
+    toAdd('1center-column') && bm.add('1center-column', {
+        category: 'Containers',
+        label: '1 Center Column',
+        attributes: {class: "gjs-fonts gjs-f-b1"},
+        content: `<div class="spl-container"><div class="spl-row spl-row-md"><div class="spl-col-md-12"></div></div></div>`
+    });
     toAdd('1column') && bm.add('1column', {
         category: 'Containers',
         label: '1 Column',
         attributes: {class:'gjs-fonts gjs-f-b1'},
-        content: `<div class="spl-container"><div class="spl-row spl-row-md"><div class="spl-col-md-12"></div></div></div>`
+        content: `<div class="spl-container-fluid"><div class="spl-row spl-row-md"><div class="spl-col-md-12"></div></div></div>`
     });
     toAdd('2column') && bm.add('2column', {
         category: 'Containers',
         label: '2 Columns',
         attributes: {class: "gjs-fonts gjs-f-b2"},
-        content: `<div class="spl-container"><div class="spl-row spl-row-md"><div class="spl-col-md-6"></div><div class="spl-col-md-6"></div></div></div>`
+        content: `<div class="spl-container-fluid"><div class="spl-row spl-row-md"><div class="spl-col-md-6"></div><div class="spl-col-md-6"></div></div></div>`
     });
     toAdd('3column') && bm.add('3column', {
         category: 'Containers',
         label: '3 Columns',
         attributes: {class: "gjs-fonts gjs-f-b3"},
-        content: `<div class="spl-container"><div class="spl-row spl-row-md"><div class="spl-col-md-4"></div><div class="spl-col-md-4"></div><div class="spl-col-md-4"></div></div></div>`
+        content: `<div class="spl-container-fluid"><div class="spl-row spl-row-md"><div class="spl-col-md-4"></div><div class="spl-col-md-4"></div><div class="spl-col-md-4"></div></div></div>`
     });
 }

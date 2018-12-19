@@ -65,7 +65,7 @@ export const
                 }
                 @media (min-width: 1200px) {
                     .spl-container {
-                        width: 98%;
+                        width: 1170px;
                     }
                     .spl-row-lg{
                         display:flex;

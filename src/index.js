@@ -26,7 +26,7 @@ export default grapesjs.plugins.add('grapesjs-simple-lp', (editor, opts = {}) =>
 
     let defaults = {
         // Which blocks to add
-        blocks: ['link-block', 'quote', 'text-basic', 'divider', '1column', '2column','3column','4column'],
+        blocks: ['link-block', 'quote', 'text-basic', 'divider', '1column', '2column','3column','4column', '1center-column'],
 
         // Modal import title
         modalImportTitle: 'Import',
