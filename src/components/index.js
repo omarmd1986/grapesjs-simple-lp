@@ -19,7 +19,7 @@ export default (editor, config = {}) => {
         defaults: {
             ...defaultModel.prototype.defaults,
             droppable: true,
-
+            
             resizable: {
 
                 keyWidth: 'class',
@@ -32,12 +32,12 @@ export default (editor, config = {}) => {
                     mouseEvent = (mouseEvent === null) ? event : mouseEvent;
 
                     let w = mouseEvent.view || window;
-                    
+
                     let offset = Math.abs(mouseEvent.clientX - event.clientX);
-                    
+
                     let pc = offset * 100 / w.innerWidth;
 
-                    if (pc < 8.333333333) {
+                    if (pc < 5.333333333) {
                         return '';
                     }
 
@@ -46,26 +46,27 @@ export default (editor, config = {}) => {
                     let classes = $(ele).attr('class').split(' ');
                     let c = classes.find(cl => cl.includes('spl-col-md-'));
                     let col = c ? parseInt(c.split('-').pop()) : 0;
-                    
-                    $(ele).removeClass(`spl-col-md-${col}`);
+                    let model = editor.getSelected();
+
+                    model.removeClass(`spl-col-md-${col}`);
 
                     if (isLeftMove && col > 1) {
                         //decrease the el class spl-col-md-#
                         col--;
-                    } else if(!isLeftMove && col < 12){
+                    } else if (!isLeftMove && col < 12) {
                         //increase the el class spl-col-md-#
                         col++;
                     }
-                    $(ele).addClass(`spl-col-md-${col}`);
+                    model.addClass(`spl-col-md-${col}`);
 
                     mouseEvent = event;
 
                     return '';
                 },
-                
-                onEnd: function(){
+
+                onEnd: function () {
                     ele = null;
-                    mouseEvent = null;    
+                    mouseEvent = null;
                 },
 
                 tl: 0, // Top left
@@ -77,7 +78,7 @@ export default (editor, config = {}) => {
                 bc: 0, // Bottom center
                 br: 0 // Bottom right
             },
-
+            
             traits: [],
         }
     }, {

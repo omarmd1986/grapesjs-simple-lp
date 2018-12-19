@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-simple-lp",
-  "version": "0.0.49",
+  "version": "0.0.50",
   "description": "GrapesJS Plugin Landing Page Builder",
   "main": "dist/grapesjs-simple-lp.min.js",
   "scripts": {
