@@ -1,13 +1,13 @@
 {
   "name": "grapesjs-simple-lp",
-  "version": "0.0.52",
+  "version": "0.0.54",
   "description": "GrapesJS Plugin Landing Page Builder",
   "main": "dist/grapesjs-simple-lp.min.js",
   "scripts": {
     "lint": "eslint src",
     "v:patch": "npm version --no-git-tag-version patch",
     "build": "npm run v:patch && webpack --env.production && npm run build:css",
-    "start": "webpack-dev-server --open --progress --colors & npm run build:css -- -w",
+    "start": "webpack-dev-server --watch-poll --open --progress --colors && npm run build:css",
     "build:css": "node-sass src/style/main.scss dist/grapesjs-simple-lp.min.css --output-style compressed"
   },
   "repository": {

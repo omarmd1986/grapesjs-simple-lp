@@ -159,4 +159,29 @@ export default (editor, config) => {
         el.classList.add('slp-dropIn');
     });
 
-}
+
+    let promises = [];
+
+    promises.push(new Promise((resolve, reject) => {
+        editor.on('load', resolve);
+    }));
+
+    promises.push(new Promise((resolve, reject) => {
+        const config = editor.StorageManager.getConfig();
+
+        if (config.type && config.type === 'remote') {
+            editor.on('storage:load', resolve)
+            editor.on('storage:error', reject)
+        } else {
+            resolve();
+        }
+    }));
+
+    promises.push(new Promise((resolve, reject) => {
+        window.onload = resolve;
+        window.onerror = reject;
+    }));
+
+    Promise.all(promises).then(() => editor.trigger('spl:loaded')).catch(() => editor.trigger('spl:loaded:error'));
+
+};
