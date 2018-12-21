@@ -40,6 +40,10 @@
                     }
                 }
             });
+            
+            editor.on('spl:loaded', (a) => {
+                console.log('SPL LOADED', a)
+            });
         </script>
     </body>
 </html>

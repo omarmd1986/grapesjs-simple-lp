@@ -163,44 +163,28 @@ export default (editor, config) => {
     let promises = [];
 
     promises.push(new Promise((resolve, reject) => {
-//        editor.on('load', resolve);
-        editor.on('load', () => {
-            console.debug('LOAD COMPLETE')
+        const config = editor.getConfig();
+        if (config.autorender && (config.autorender === 1 || config.autorender === true)) {
+            editor.on('load', resolve);
+        } else {
             resolve();
-        });
+        }
     }));
 
     promises.push(new Promise((resolve, reject) => {
         const config = editor.StorageManager.getConfig();
 
         if (config.type && config.type === 'remote') {
-//            editor.on('storage:load', resolve)
-//            editor.on('storage:error', reject)
-            editor.on('storage:load', () => {
-                console.debug('storage load')
-                resolve();
-            })
-            editor.on('storage:error', (e) => {
-                console.debug('storage error')
-                reject(e)
-            })
+            editor.on('storage:load', resolve)
+            editor.on('storage:error', reject)
         } else {
-            console.debug('config type is local')
             resolve();
         }
     }));
 
     promises.push(new Promise((resolve, reject) => {
-//        window.onload = resolve;
-//        window.onerror = reject;
-        window.onload = () => {
-            console.debug('window onload')
-            resolve()
-        };
-        window.onerror = (e) => {
-            console.debug('window onerror')
-            reject(e)
-        };
+        window.onload = resolve;
+        window.onerror = reject;
     }));
 
     Promise.all(promises).then((d) => editor.trigger('spl:loaded', d)).catch((e) => editor.trigger('spl:loaded:error', e));
