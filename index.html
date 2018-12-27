@@ -44,6 +44,10 @@
             editor.on('spl:loaded', (a) => {
                 console.log('SPL LOADED', a)
             });
+            
+            editor.on('spl:loaded:error', (e) => {
+                console.log('SPL LOADED ERROR', e)
+            });
         </script>
     </body>
 </html>

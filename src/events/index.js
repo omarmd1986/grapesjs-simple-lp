@@ -183,8 +183,16 @@ export default (editor, config) => {
     }));
 
     promises.push(new Promise((resolve, reject) => {
-        window.onload = resolve;
-        window.onerror = reject;
+        // in case the document is already rendered
+        if(document.readyState !== 'loading'){
+            return resolve();
+        }
+
+        // modern browsers
+        document.addEventListener && document.addEventListener('DOMContentLoaded', resolve);
+        document.attachEvent && document.attachEvent('onreadystatechange', () => {
+            document.readyState === 'complete' && resolve();
+        });
     }));
 
     Promise.all(promises).then((d) => editor.trigger('spl:loaded', d)).catch((e) => editor.trigger('spl:loaded:error', e));
