@@ -8,19 +8,19 @@ export default (editor, opts) => {
             </style>
              <form class="mrk-form" action="" method="POST">
                 <div class="form-group">
-                    <label class="label">Name</label>
+                    <label>Name</label>
                     <input name="name" type="text" class="form-control input" placeholder="Type here your name" required>
                 </div>
                 <div class="form-group">
-                    <label class="label">Email</label>
+                    <label>Email</label>
                     <input name="email" type="email" class="form-control input" placeholder="Type here your email" required>
                 </div>
                 <div class="form-group">
-                    <label class="label">Phone</label>
+                    <label>Phone</label>
                     <input name="phone" type="tel" class="form-control input" placeholder="Type your phone number" required>
                 </div>
                 <div class="form-group">
-                    <label class="label">Gender</label>
+                    <label>Gender</label>
                     <select class="form-control select" name="gender" required>
                         <option value="male">
                             Male
@@ -31,7 +31,7 @@ export default (editor, opts) => {
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="label">Age</label>
+                    <label>Age</label>
                     <input name="age" type="number" class="form-control input" placeholder="Type your age here" min="10" max="120" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Send</button>
