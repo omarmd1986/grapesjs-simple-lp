@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-simple-lp",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "GrapesJS Plugin Landing Page Builder",
   "main": "dist/grapesjs-simple-lp.min.js",
   "scripts": {
@@ -55,7 +55,7 @@
     "grapesjs-plugin-export": "1.*",
     "grapesjs-plugin-forms": "1.*",
     "grapesjs-plugin-header": "0.*",
-    "grapesjs-plugin-modal": "^0.1.36",
+    "grapesjs-plugin-modal": "^0.1.37",
     "grapesjs-plugin-social": "0.*",
     "grapesjs-plugin-sproutvideo": "0.*",
     "interactjs": "^1.3.4"
